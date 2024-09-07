@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accelerometer on iPhone</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        .sensor-data {
+            font-size: 24px;
+            margin: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Accelerometer Example</h1>
+    <button id="startSensor">Enable Sensor</button>
+    
+    <div class="sensor-data">
+        <p>X: <span id="xValue">N/A</span></p>
+        <p>Y: <span id="yValue">N/A</span></p>
+        <p>Z: <span id="zValue">N/A</span></p>
+    </div>
+
+    <script>
+        // Function to update the display with accelerometer data
+        function updateDisplay(x, y, z) {
+            document.getElementById('xValue').innerText = x.toFixed(2);
+            document.getElementById('yValue').innerText = y.toFixed(2);
+            document.getElementById('zValue').innerText = z.toFixed(2);
+        }
+
+        // Function to handle the motion event
+        function handleMotionEvent(event) {
+            const x = event.accelerationIncludingGravity.x;
+            const y = event.accelerationIncludingGravity.y;
+            const z = event.accelerationIncludingGravity.z;
+            
+            // Update the values displayed on the page
+            updateDisplay(x, y, z);
+        }
+
+        // Request permission for motion data on iOS
+        document.getElementById('startSensor').addEventListener('click', function() {
+            if (typeof DeviceMotionEvent.requestPermission === 'function') {
+                DeviceMotionEvent.requestPermission()
+                .then(permissionState => {
+                    if (permissionState === 'granted') {
+                        window.addEventListener('devicemotion', handleMotionEvent);
+                    }
+                })
+                .catch(console.error);
+            } else {
+                // If the API does not require permission (like on non-iOS devices)
+                window.addEventListener('devicemotion', handleMotionEvent);
+            }
+        });
+    </script>
+</body>
+</html>
