@@ -23,7 +23,8 @@
 <a id="start_demo" class="btn btn-lg btn-success py-1" href="#" role="button">Start the demo</a>
 <p style="margin-top:1rem;">Num. of datapoints: <span class="badge badge-warning" id="num-observed-events">0</span></p>
 
-<p style="margin-top:1rem;">Distance changed vertically: <span class="badge badge-warning" id="dist-moved">0</span> feet</p>
+<p style="margin-top:1rem;">Current Speed: <span class="badge badge-warning" id="current-speed">0</span> m/s</p>
+<p style="margin-top:1rem;">Distance changed vertically: <span class="badge badge-warning" id="dist-moved">0</span> meter</p>
 	
 <h4 style="margin-top:0.75rem;">Orientation</h4>
 <ul>
@@ -84,9 +85,14 @@ function handleMotion(event) {
   updateFieldIfNotNull('Accelerometer_gy', event.accelerationIncludingGravity.y);
   updateFieldIfNotNull('Accelerometer_gz', event.accelerationIncludingGravity.z);
 
+  let speedElement = document.getElementById("current-speed")
+  let eventSpeed = parseInt(speedElement.innerHTML)
+  let updatedSpeed = eventSpeed + event.accelerationIncludingGravity.y
+  speedElement.innerHTML = updatedSpeed;
+	
   let distElement = document.getElementById("dist-moved")
   let eventDist = parseInt(distElement.innerHTML)
-  distElement.innerHTML = eventDist + event.acceleration.z;
+  distElement.innerHTML = eventDist + updatedSpeed;
 
   updateFieldIfNotNull('Accelerometer_x', event.acceleration.x);
   updateFieldIfNotNull('Accelerometer_y', event.acceleration.y);
