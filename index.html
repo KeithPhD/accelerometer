@@ -23,6 +23,8 @@
 <a id="start_demo" class="btn btn-lg btn-success py-1" href="#" role="button">Start the demo</a>
 <p style="margin-top:1rem;">Num. of datapoints: <span class="badge badge-warning" id="num-observed-events">0</span></p>
 
+<p style="margin-top:1rem;">Distance changed vertically: <span class="badge badge-warning" id="dist-moved">0</span> feet</p>
+	
 <h4 style="margin-top:0.75rem;">Orientation</h4>
 <ul>
   <li>X-axis (&beta;): <span id="Orientation_b">0</span><span>&deg;</span></li>
@@ -57,7 +59,8 @@
 </main>
 
 <script>
-
+let height = 0;
+	
 function handleOrientation(event) {
   updateFieldIfNotNull('Orientation_a', event.alpha);
   updateFieldIfNotNull('Orientation_b', event.beta);
@@ -80,6 +83,10 @@ function handleMotion(event) {
   updateFieldIfNotNull('Accelerometer_gx', event.accelerationIncludingGravity.x);
   updateFieldIfNotNull('Accelerometer_gy', event.accelerationIncludingGravity.y);
   updateFieldIfNotNull('Accelerometer_gz', event.accelerationIncludingGravity.z);
+
+  let distElement = document.getElementById("dist-moved")
+  let eventDist = parseInt(distElement.innerHTML)
+  distElement.innerHTML = eventDist + event.accelerationIncludingGravity.y;
 
   updateFieldIfNotNull('Accelerometer_x', event.acceleration.x);
   updateFieldIfNotNull('Accelerometer_y', event.acceleration.y);
