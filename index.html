@@ -124,21 +124,21 @@ function sendEmail() {
 }
 
 function updateLists() {
-	a_gx.push(event.accelerationIncludingGravity.x);
-	a_gy.push(event.accelerationIncludingGravity.y);
-	a_gz.push(event.accelerationIncludingGravity.z);
+	a_gx.push(Math.round(event.accelerationIncludingGravity.x, 4));
+	a_gy.push(Math.round(event.accelerationIncludingGravity.y, 4));
+	a_gz.push(Math.round(event.accelerationIncludingGravity.z, 4));
 
-	a_x.push(event.acceleration.x);
-	a_y.push(event.acceleration.y);
-	a_z.push(event.acceleration.z);
+	a_x.push(Math.round(event.acceleration.x, 4));
+	a_y.push(Math.round(event.acceleration.y, 4));
+	a_z.push(Math.round(event.acceleration.z, 4));
 
-	gyro_a.push(event.rotationRate.alpha);
-	gyro_b.push(event.rotationRate.beta);
-	gyro_g.push(event.rotationRate.gamma);
+	gyro_a.push(Math.round(event.rotationRate.alpha, 4));
+	gyro_b.push(Math.round(event.rotationRate.beta, 4));
+	gyro_g.push(Math.round(event.rotationRate.gamma, 4));
 
-	orien_a.push(event.alpha);
-	orien_b.push(event.beta);
-	orien_g.push(event.gamma);
+	orien_a.push(Math.round(event.alpha, 4));
+	orien_b.push(Math.round(event.beta, 4));
+	orien_g.push(Math.round(event.gamma, 4));
 }
 	
 let a_gx = [];
