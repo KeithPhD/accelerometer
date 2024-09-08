@@ -115,9 +115,11 @@ function sendEmail() {
 	let jsonString = JSON.stringify(outputDictionary);
 	let encodedDictionary = encodeURIComponent(jsonString);
 
-	window.location.href = 'mailto:${"iw2bwa@gmail.com"}?subject=${encodeURIComponent("Data")}&body=${encodedDictionary}';
+	let email = encodeURIComponent("iw2bwa@gmail.com");
 
-	let emailElement = document.getElementById("num-observed-events")
+	window.location.href = "mailto:${email}?subject="Data"&body=${encodedDictionary}";
+
+	let emailElement = document.getElementById("email-sent")
  	emailElement.innerHTML = "True";
 }
 
