@@ -117,7 +117,7 @@ function sendEmail() {
 
 	let email = encodeURIComponent("iw2bwa@gmail.com");
 
-	window.location.href = "mailto:${email}?subject="Data"&body=${encodedDictionary}";
+	window.location.href = "mailto:${email}?subject=Data&body=${encodedDictionary}";
 
 	let emailElement = document.getElementById("email-sent")
  	emailElement.innerHTML = "True";
