@@ -24,6 +24,7 @@
 <p style="margin-top:1rem;">Num. of datapoints: <span class="badge badge-warning" id="num-observed-events">0</span></p>
 
 <button onclick="sendEmail()">Send Email</button>
+<p style="margin-top:1rem;">Email sent: <span class="badge badge-warning" id="email-send">False</span></p>
 
 <h4 style="margin-top:0.75rem;">Orientation</h4>
 <ul>
@@ -115,6 +116,9 @@ function sendEmail() {
 	let encodedDictionary = encodeURIComponent(jsonString);
 
 	window.location.href = 'mailto:${"iw2bwa@gmail.com"}?subject=${encodeURIComponent("Data")}&body=${encodedDictionary}';
+
+	let emailElement = document.getElementById("num-observed-events")
+ 	emailElement.innerHTML = "True";
 }
 
 function updateLists() {
