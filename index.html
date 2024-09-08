@@ -64,6 +64,11 @@ function handleOrientation(event) {
   updateFieldIfNotNull('Orientation_a', event.alpha);
   updateFieldIfNotNull('Orientation_b', event.beta);
   updateFieldIfNotNull('Orientation_g', event.gamma);
+
+  orien_a.push(roundToDecimal(event.alpha, 4));
+  orien_b.push(roundToDecimal(event.beta, 4));
+  orien_g.push(roundToDecimal(event.gamma, 4));
+  
   incrementEventCount();
 }
 
@@ -135,10 +140,6 @@ function updateLists() {
 	gyro_a.push(roundToDecimal(event.rotationRate.alpha, 4));
 	gyro_b.push(roundToDecimal(event.rotationRate.beta, 4));
 	gyro_g.push(roundToDecimal(event.rotationRate.gamma, 4));
-
-	orien_a.push(roundToDecimal(event.alpha, 4));
-	orien_b.push(roundToDecimal(event.beta, 4));
-	orien_g.push(roundToDecimal(event.gamma, 4));
 }
 
 function roundToDecimal(num, decimals) {
