@@ -124,21 +124,26 @@ function sendEmail() {
 }
 
 function updateLists() {
-	a_gx.push(Math.round(event.accelerationIncludingGravity.x, 4));
-	a_gy.push(Math.round(event.accelerationIncludingGravity.y, 4));
-	a_gz.push(Math.round(event.accelerationIncludingGravity.z, 4));
+	a_gx.push(roundToDecimal(event.accelerationIncludingGravity.x, 4));
+	a_gy.push(roundToDecimal(event.accelerationIncludingGravity.y, 4));
+	a_gz.push(roundToDecimal(event.accelerationIncludingGravity.z, 4));
 
-	a_x.push(Math.round(event.acceleration.x, 4));
-	a_y.push(Math.round(event.acceleration.y, 4));
-	a_z.push(Math.round(event.acceleration.z, 4));
+	a_x.push(roundToDecimal(event.acceleration.x, 4));
+	a_y.push(roundToDecimal(event.acceleration.y, 4));
+	a_z.push(roundToDecimal(event.acceleration.z, 4));
 
-	gyro_a.push(Math.round(event.rotationRate.alpha, 4));
-	gyro_b.push(Math.round(event.rotationRate.beta, 4));
-	gyro_g.push(Math.round(event.rotationRate.gamma, 4));
+	gyro_a.push(roundToDecimal(event.rotationRate.alpha, 4));
+	gyro_b.push(roundToDecimal(event.rotationRate.beta, 4));
+	gyro_g.push(roundToDecimal(event.rotationRate.gamma, 4));
 
-	orien_a.push(Math.round(event.alpha, 4));
-	orien_b.push(Math.round(event.beta, 4));
-	orien_g.push(Math.round(event.gamma, 4));
+	orien_a.push(roundToDecimal(event.alpha, 4));
+	orien_b.push(roundToDecimal(event.beta, 4));
+	orien_g.push(roundToDecimal(event.gamma, 4));
+}
+
+function roundToDecimal(num, decimals) {
+    let factor = Math.pow(10, decimals);
+    return Math.round(num * factor) / factor;
 }
 	
 let a_gx = [];
