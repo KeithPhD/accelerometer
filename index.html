@@ -58,7 +58,20 @@
 
 </div>
 </main>
-
+<script>
+        function sendData(data) {
+            fetch('http://<your-computer-ip>:65432', { // Replace with your computer's IP address
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'text/plain'
+                },
+                body: data
+            })
+            .then(response => response.text())
+            .then(data => console.log(data))
+            .catch(error => console.error('Error:', error));
+        }
+</script>
 <script>
 function handleOrientation(event) {
   updateFieldIfNotNull('Orientation_a', event.alpha);
