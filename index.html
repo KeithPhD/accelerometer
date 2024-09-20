@@ -24,6 +24,7 @@
 <p style="margin-top:1rem;">Num. of datapoints: <span class="badge badge-warning" id="num-observed-events">0</span></p>
 
 <button onclick="sendEmail()">Send Email</button>
+<button onclick="sendData()">Send Data</button>
 <p style="margin-top:1rem;">Email sent: <span class="badge badge-warning" id="email-send">False</span></p>
 
 <h4 style="margin-top:0.75rem;">Orientation</h4>
@@ -60,7 +61,7 @@
 </main>
 <script>
         function sendData(data) {
-            fetch('http://<your-computer-ip>:65432', { // Replace with your computer's IP address
+            fetch('http://192.168.1.189:65432', { // Replace with your computer's IP address
                 method: 'POST',
                 headers: {
                     'Content-Type': 'text/plain'
