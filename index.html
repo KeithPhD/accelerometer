@@ -20,6 +20,7 @@
 <main role="main" class="container">
 
 <div class="p-3 mb-2 bg-secondary" id="demo-div">
+<input type="text" id="ipAddressInput">
 <a id="start_demo" class="btn btn-lg btn-success py-1" href="#" role="button">Start the demo</a>
 <p style="margin-top:1rem;">Num. of datapoints: <span class="badge badge-warning" id="num-observed-events">0</span></p>
 
@@ -60,18 +61,7 @@
 </div>
 </main>
 <script>
-        function sendData(data) {
-            fetch('http://192.168.1.189:65432', { // Replace with your computer's IP address
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'text/plain'
-                },
-                body: data
-            })
-            .then(response => response.text())
-            .then(data => console.log(data))
-            .catch(error => console.error('Error:', error));
-        }
+
 </script>
 <script>
 function handleOrientation(event) {
@@ -159,6 +149,21 @@ function updateLists() {
 function roundToDecimal(num, decimals) {
     let factor = Math.pow(10, decimals);
     return Math.round(num * factor) / factor;
+}
+
+function sendRequest() {
+	var ipAddressInput = document.getElementById("ipAddressInput");
+  	var ipAddress = ipAddressInput.value;
+	fetch('http://' + ipAddress + ':5000/receive_data', {
+	  method: 'POST',
+	  headers: {
+		'Content-Type': 'application/json'
+	  },
+	  body: JSON.stringify({ message: 'Hello from the JavaScript' })
+	})
+	  .then(response => response.json())
+	  .then(data => console.log(data))
+	  .catch(error => console.error('Error:', error));
 }
 	
 let a_gx = [];
